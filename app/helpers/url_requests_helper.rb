@@ -1,0 +1,2 @@
+module UrlRequestsHelper
+end
