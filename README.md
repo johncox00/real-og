@@ -16,6 +16,7 @@ yarn watch
 - Async fetch/cache x
 - Socket/polling x
 - make it usable/pretty/bulletproof
+- containerize
 
 Running:
 ```

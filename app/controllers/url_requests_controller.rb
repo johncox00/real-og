@@ -5,10 +5,11 @@ class UrlRequestsController < ApplicationController
     per = 10 if per < 1
     per = 100 if per > 100
     @url_requests = UrlRequest.order(created_at: :desc).limit(per).offset((page-1)*per)
-    total_pages = UrlRequest.count / per + 1
+    total_count = UrlRequest.count
+    total_pages = total_count / per + 1
 
     respond_to do |format|
-      format.json { render json: { page: page, total_pages: total_pages, data: @url_requests } }
+      format.json { render json: { page: page, total_pages: total_pages, total: total_count, data: @url_requests } }
     end
   end
 
