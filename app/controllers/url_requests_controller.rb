@@ -16,6 +16,7 @@ class UrlRequestsController < ApplicationController
     puts params
     @url_request = UrlRequest.new(url_request_params)
     if @url_request.save
+      ProcessRequestJob.perform_later @url_request.id
       respond_to do |format|
         format.json { render json: @url_request.to_json }
       end

@@ -11,7 +11,14 @@ yarn watch
 
 # TODO
 
-- Data model
-- Create + List
+- Data model x
+- Create + List x
 - Async fetch/cache: https://guides.rubyonrails.org/active_job_basics.html
 - Socket/polling
+
+Running:
+```
+yarn build
+rails s
+bin/jobs start
+```
