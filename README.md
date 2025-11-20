@@ -13,12 +13,14 @@ yarn watch
 
 - Data model x
 - Create + List x
-- Async fetch/cache: https://guides.rubyonrails.org/active_job_basics.html
-- Socket/polling
+- Async fetch/cache x
+- Socket/polling x
+- make it usable/pretty/bulletproof
 
 Running:
 ```
 yarn build
 rails s
 bin/jobs start
+redis-server
 ```

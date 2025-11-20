@@ -18,7 +18,7 @@ class UrlRequestsController < ApplicationController
     if @url_request.save
       ProcessRequestJob.perform_later @url_request.id
       respond_to do |format|
-        format.json { render json: @url_request.to_json }
+        format.json { render json: @url_request }
       end
     end
   end
@@ -27,7 +27,7 @@ class UrlRequestsController < ApplicationController
     # Using a private method to encapsulate the permitted parameters is a good
     # pattern. You can use the same list for both create and update.
     def url_request_params
-      params.expect(url_request: [:url])
+      params.expect(url_request: [ :url ])
     end
 
     def pagination_params

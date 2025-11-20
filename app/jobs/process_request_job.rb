@@ -22,6 +22,7 @@ class ProcessRequestJob < ApplicationJob
         content = meta_tag["content"]
         og_tags[property] = content
       end
+      # if og_tags.empty? we could abort and queue up another job here that uses Playwright or Selenium to render the site in case it's a SPA that needs JS to render the actual page
       if og_tags["og:image"] then
         url_request.update(status: :success, result: og_tags["og:image"])
       else

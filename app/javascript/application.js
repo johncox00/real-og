@@ -11,3 +11,4 @@ document.addEventListener("DOMContentLoaded", () => {
     ReactDOM.createRoot(root).render(<App />);
   }
 });
+import "./channels"
