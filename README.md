@@ -15,13 +15,10 @@ yarn watch
 - Create + List x
 - Async fetch/cache x
 - Socket/polling x
-- make it usable/pretty/bulletproof
-- containerize
+- make it usable/pretty/bulletproof x
+- containerize X
 
 Running:
 ```
-yarn build
-rails s
-bin/jobs start
-redis-server
+docker-compose up --build
 ```

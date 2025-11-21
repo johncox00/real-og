@@ -118,6 +118,7 @@ const App = () => {
         response.json().then((json) => {
           setCurrentRequest(json);
           setPreviousUrls([ json, ...previousUrls ]);
+          setTotalCount(totalCount + 1);
         });
       }).catch(err => console.error('ERROR!', err)).finally(() => {
         setIsSubmitting(false);
