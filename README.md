@@ -9,7 +9,7 @@ mv ./.env.example ./.env
 docker-compose up --build
 ```
 
-Visit (localhost:3000)[http://localhost:3000]. Enter a URL in the text box and watch it work.
+Visit [localhost:3000](http://localhost:3000). Enter a URL in the text box and watch it work.
 
 ## Details
 
