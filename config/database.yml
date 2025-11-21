@@ -5,17 +5,21 @@
 #   gem "sqlite3"
 #
 default: &default
-  adapter: sqlite3
+  adapter: postgresql
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  timeout: 5000
+  username: <%= ENV.fetch("POSTGRES_USER", "postgres") %>
+  password: <%= ENV.fetch("POSTGRES_PASSWORD", "postgres") %>
+  host:     <%= ENV.fetch("POSTGRES_HOST", "localhost") %>
 
 development:
   primary:
     <<: *default
-    database: storage/development.sqlite3
+    database: <%= ENV.fetch("POSTGRES_DB", "real_og_development") %>
+
   queue:
     <<: *default
-    database: storage/development_queue.sqlite3
+    database: <%= ENV.fetch("POSTGRES_QUEUE_DB", "real_og_development_queue") %>
     migrations_paths: db/queue_migrate
 
 
@@ -23,8 +27,14 @@ development:
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
-  <<: *default
-  database: storage/test.sqlite3
+  primary:
+    <<: *default
+    database: real_og_test
+
+  queue:
+    <<: *default
+    database: real_og_test_queue
+    migrations_paths: db/queue_migrate
 
 
 # Store production database in the storage/ directory, which by default
