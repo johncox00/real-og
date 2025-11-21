@@ -42,7 +42,7 @@ NOTE: The original `config/master.key` file was purposefully committed to this r
 
 First, I feel the need to say this: This is not production-ready code. It is functional code that was put together rather quickly and is being demonstrated in a `development` environment. There are no tests. There is no authentication. There is just a basic app.
 
-The approach to implementation when as follows:
+The approach to implementation went as follows:
 - Data model
 - API: Create + List
 - Async fetch job
