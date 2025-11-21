@@ -4,7 +4,13 @@ import PreviewCard from "./PreviewCard";
 import StatusPill from "./StatusPill";
 import EmptyState from "./EmptyState";
 
-const host = "localhost:3000";
+const getMetaContent = (name) => {
+  const meta = document.querySelector(`meta[name="${name}"]`);
+  return meta ? meta.getAttribute('content') : null;
+};
+
+const host = `${getMetaContent('api-host')}:${getMetaContent('api-port')}`;
+const protocol = getMetaContent('api-protocol') || 'http';
 const CableContext = React.createContext();
 const cable = ActionCable.createConsumer(`ws://${host}/cable`);
 function CableProvider({ children }) {
@@ -40,7 +46,7 @@ const App = () => {
   const [invalid, setInvalid] = useState(false);
 
   const fetchUrlPage = () => {
-    fetch(`http://${host}/url_requests?page=${page}&per_page=10`).then((response) => {
+    fetch(`${protocol}://${host}/url_requests?page=${page}&per_page=10`).then((response) => {
       response.json().then((json) => {
         setPreviousUrls([ ...previousUrls, ...json.data ]);
         setMore(json.total_pages > page);
@@ -103,7 +109,7 @@ const App = () => {
     if ( validateUrl(urlToSubmit) ) {
       
       fetch(
-        `http://${host}/url_requests`, 
+        `${protocol}://${host}/url_requests`, 
         { 
           method: 'POST', 
           headers: { 

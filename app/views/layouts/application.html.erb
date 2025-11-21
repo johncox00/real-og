@@ -8,6 +8,12 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%# Environment variables for JavaScript %>
+    <meta name="api-host" content="<%= ENV.fetch('REACT_APP_API_HOST', 'localhost') %>">
+    <meta name="api-port" content="<%= ENV.fetch('REACT_APP_API_PORT', '3000') %>">
+    <meta name="api-protocol" content="<%= ENV.fetch('REACT_APP_API_PROTOCOL', 'http') %>">
+
+
     <%= yield :head %>
 
     <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
