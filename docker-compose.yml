@@ -23,6 +23,12 @@ services:
         condition: service_started
       db:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "bundle exec rails runner 'ActiveRecord::Base.connection.execute(\"SELECT 1\") rescue exit 1' && bundle exec rails runner 'ActiveRecord::Base.connected_to(role: :writing, shard: :queue) { ActiveRecord::Base.connection.execute(\"SELECT 1\") }' rescue exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
 
   worker:
     build:
@@ -43,6 +49,8 @@ services:
         condition: service_started
       db:
         condition: service_started
+      web:
+        condition: service_healthy
 
   redis:
     image: redis:7
