@@ -1,6 +1,6 @@
 # Real OG
 
-This is a Rails application with React frontend that will asynchronously fetch an OpenGraph image from a website if it exists. 
+This is a Rails application with React frontend that will asynchronously fetch an Open Graph image from a website if it exists. 
 
 ## Quick Start
 
