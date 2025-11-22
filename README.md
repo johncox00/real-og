@@ -5,7 +5,7 @@ This is a Rails application with React frontend that will asynchronously fetch a
 ## Quick Start
 
 ```
-mv ./.env.example ./.env
+cp ./.env.example ./.env
 docker-compose up --build
 ```
 
