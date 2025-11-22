@@ -3,6 +3,7 @@ class ProcessRequestJob < ApplicationJob
   queue_as :default
 
   def perform(url_request_id)
+    puts "Processing request #{url_request_id}"
     url_request = UrlRequest.find(url_request_id)
     begin
       url_request.update(status: :processing)
@@ -24,8 +25,10 @@ class ProcessRequestJob < ApplicationJob
       end
       # if og_tags.empty? we could abort and queue up another job here that uses Playwright or Selenium to render the site in case it's a SPA that needs JS to render the actual page
       if og_tags["og:image"] then
+        puts "Found OpenGraph image: #{og_tags["og:image"]}"
         url_request.update(status: :success, result: og_tags["og:image"])
       else
+        puts "No OpenGraph image found"
         url_request.update(status: :error, result: "No OpenGraph image found")
       end
     rescue StandardError => e
